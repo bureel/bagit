@@ -22,10 +22,10 @@ var myGameArea = {
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function (e) {
             myGameArea.key = e.keyCode;
-        })
+        });
         window.addEventListener('keyup', function (e) {
             myGameArea.key = false;
-        })
+        });
     },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -33,7 +33,7 @@ var myGameArea = {
     stop : function() {
         clearInterval(this.interval);
     }
-}
+};
 
 function component(width, height, color, x, y, type) {
     this.type = type;
@@ -120,16 +120,7 @@ function updateGameArea() {
     myMoney.text="MONEY:$ " + dollar;
     if (myGamePiece.crashWith(myBanana)) {
         dollar = dollar - 1;
+        myBanana.speedX = -1000;
     }
     myMoney.update();
-}
-function moveleft() {
-    myGamePiece.speedX -= 2;
-}
-
-function moveright() {
-    myGamePiece.speedX += 2;
-}
-function stopMove() {
-    myGamePiece.speedX = 0;
 }
