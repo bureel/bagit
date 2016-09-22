@@ -1,0 +1,44 @@
+body {
+    background: url(https://hd.unsplash.com/photo-1463123081488-789f998ac9c4);
+    background-size: cover;
+
+}
+
+h1	{
+    text-align: center;
+    padding-top: 25%;
+    color: white;
+}
+
+canvas {
+    border: 2px solid gray;
+    background-color: #fff;
+    padding-top: 0;
+    /*padding-left: 0;*/
+    /*padding-right: 0;*/
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    /*width: 800px;*/
+    /*height: 500px;*/
+    margin-top: 15%;
+    align-self: center;
+}
+
+#navbar {
+    float: right;
+}
+
+#gameButtons {
+    align-items: center;
+    margin-left: 400px;
+}
+
+.lButton {
+    margin-left: -5px;
+}
+
+.rButton{
+    margin-left: 10px;
+}
+

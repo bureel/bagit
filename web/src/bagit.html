@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Food Pyramid Game</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="bagit.css">
+    <script type="text/javascript" src="bagit.js"></script>
+
+
+</head>
+<body onload="startGame()">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+
+            <a class="navbar-brand" href="#">Pyramid Shopper</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="button1nav"><a href="#">Game Rules</a></li>
+                <li id="button2nav"><a href="#">Fun Facts</a></li>
+                <li id="button3nav"><a href="#">Game Characters</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="gameButtons" style="text-align:center;width:480px;">
+    <button onclick="moveleft()" onmouseup="stopMove()">LEFT</button>
+    <button onclick="moveright()" onmouseup="stopMove()">RIGHT</button>
+    <br>
+    <button onclick="stopMove()">STOP</button>
+</div>
+
+
