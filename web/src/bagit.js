@@ -1,14 +1,17 @@
 var myGamePiece;
 var myBackground;
 var myMoney;
-var myBanana;
+var myBanana = new component(30, 30, "yellow", 40, 40);
+var myApple = new component(30, 30, "red", 40, 40);
+var myBroccoli = new component(30, 30, "green", 40, 40);
+var fruitTemplates = [myBanana, myApple, myBroccoli];
 var dollar = 10;
+var myFruits = [];
 
 function startGame() {
     myGamePiece = new component(50, 50, "GROCERY_BAG.png", 75, 430, "image");
     myBackground = new component(200, 480, "beltCloseUp.jpg", 0, 0, "background");
     myMoney = new component("40px", "Arial", "black", 220, 50, "text");
-    myBanana = new component(30, 30, "yellow", 40, 40);
     myGameArea.start();
 }
 var myGameArea = {
@@ -37,6 +40,7 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
+    this.color = color;
     if (type == "image" || type == "background") {
         this.image = new Image();
         this.image.src = color;
@@ -97,14 +101,19 @@ function component(width, height, color, x, y, type) {
         }
         return crash;
     }
+    this.clone = function() {
+        return new component(this.width, this.height, this.color, 0, 0, this.type);
+    }
 }
 
 function updateGameArea() {
     myGameArea.clear();
-    myBackground.speedY = +1;
+    myBackground.speedY = 2;
     myBackground.newPos();
     myBackground.update();
     myGamePiece.speedX = 0;
+    myMoney.text="MONEY:$ " + dollar;
+    myMoney.update();
 
     if (myGameArea.key && myGameArea.key == 37 && myGamePiece.x > myBackground.x) {
         myGamePiece.speedX = -2;
@@ -114,13 +123,40 @@ function updateGameArea() {
     }
     myGamePiece.newPos();
     myGamePiece.update();
-    myBanana.speedY = 1;
-    myBanana.newPos();
-    myBanana.update();
-    myMoney.text="MONEY:$ " + dollar;
-    if (myGamePiece.crashWith(myBanana)) {
-        dollar = dollar - 1;
-        myBanana.speedX = -1000;
+    myGameArea.frameNo += 1;
+    if (myGameArea.frameNo == 1 || everyinterval(150)) {
+        var newFruit = fruitTemplates[getRandomInt(0,2)].clone();
+        newFruit.x = getRandomInt(0, myBackground.width - newFruit.width);
+        console.log('Generated new fruit', newFruit);
+        myFruits.push(newFruit);
     }
-    myMoney.update();
+    for (i = 0; i < myFruits.length; i += 1) {
+        if (myGamePiece.crashWith(myFruits[i])) {
+            dollar = dollar - 1;
+            console.log('Removing a dollar', dollar);
+            console.log('Destroyed fruit', myFruits.splice(i, 1));
+        } if (myFruits[i].y > myBackground.height) {
+            console.log('Destroyed fruit', myFruits.splice(i, 1));
+        } else {
+            myFruits[i].y += 2;
+            myFruits[i].update();
+        }
+    }
+
+    // myBanana.speedY = 2;
+    // myBanana.newPos();
+    // myBanana.update();
+    // if (myGamePiece.crashWith(myBanana)) {
+    //     dollar = dollar - 1;
+    //     myBanana.speedX = -1000;
+    // }
+}
+
+function everyinterval(n) {
+    if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+    return false;
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
