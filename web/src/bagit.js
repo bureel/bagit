@@ -142,14 +142,6 @@ function updateGameArea() {
             myFruits[i].update();
         }
     }
-
-    // myBanana.speedY = 2;
-    // myBanana.newPos();
-    // myBanana.update();
-    // if (myGamePiece.crashWith(myBanana)) {
-    //     dollar = dollar - 1;
-    //     myBanana.speedX = -1000;
-    // }
 }
 
 function everyinterval(n) {
