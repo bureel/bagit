@@ -3,14 +3,16 @@ var myBackground;
 var myMoney;
 var minion;
 var myBanana = new component(85, 85, "peanut-butter-jelly-time.gif", 40, 40, "image");
-var myApple = new component(30, 30, "Apple.png", 40, 40, "image");
-var myBroccoli = new component(30, 30, "broccoli.jpg", 40, 40, "image");
-var fruitTemplates = [myBanana, myApple, myBroccoli];
+var myApple = new component(30, 30, "appleGamePiece.png", 40, 40, "image");
+var myGrapes = new component(30, 30, "GrapesGamePiece.png", 40, 40, "image");
+var myOrange = new component(30, 30, "orangeGamePiece.png", 40, 40, "image");
+var myPear = new component(30, 30, "PearGamePiece.png", 40, 40, "image");
+var fruitTemplates = [myBanana, myApple, myGrapes, myOrange, myPear];
 var dollar = 10;
 var myFruits = [];
 
 function startGame() {
-    myGamePiece = new component(50, 50, "GROCERY_BAG.png", 75, 430, "image");
+    myGamePiece = new component(50, 50, "BagitManempty.png", 75, 430, "image");
     myBackground = new component(200, 480, "beltCloseUp.jpg", 0, 0, "background");
     myMoney = new component("40px", "Arial", "black", 220, 50, "text");
     minion = new component(300, 200, "Eye_Banana.jpg", 220, 250, "image");
@@ -128,7 +130,7 @@ function updateGameArea() {
     myGamePiece.update();
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
-        var newFruit = fruitTemplates[getRandomInt(0,2)].clone();
+        var newFruit = fruitTemplates[getRandomInt(0,4)].clone();
         newFruit.x = getRandomInt(0, myBackground.width - newFruit.width);
         console.log('Generated new fruit', newFruit);
         myFruits.push(newFruit);
