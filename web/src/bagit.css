@@ -11,8 +11,8 @@ h1	{
 }
 
 canvas {
-    border: 2px solid gray;
-    background-color: #fff;
+    border: 5px solid white;
+    background-image: url("background.png");
     padding-top: 0;
     /*padding-left: 0;*/
     /*padding-right: 0;*/
@@ -21,7 +21,7 @@ canvas {
     display: block;
     /*width: 800px;*/
     /*height: 500px;*/
-    margin-top: 15%;
+    margin-top: 5%;
     align-self: center;
 }
 

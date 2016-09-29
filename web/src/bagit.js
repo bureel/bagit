@@ -13,15 +13,15 @@ var myFruits = [];
 
 function startGame() {
     myGamePiece = new component(50, 50, "GROCERY_BAG.png", 75, 430, "image");
-    myBackground = new component(200, 480, "beltCloseUp.jpg", 0, 0, "background");
+    myBackground = new component(250, 676, "beltCloseUp.jpg", 65, 0, "background");
     myMoney = new component("40px", "Arial", "black", 220, 50, "text");
     myGameArea.start();
 }
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 640;
-        this.canvas.height = 480;
+        this.canvas.width = 900;
+        this.canvas.height = 676;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -121,7 +121,7 @@ function updateGameArea() {
     if (myGameArea.key && myGameArea.key == 37 && myGamePiece.x > myBackground.x) {
         myGamePiece.speedX = -2;
     }
-    if (myGameArea.key && myGameArea.key == 39 && myGamePiece.x < myBackground.width - myGamePiece.width) {
+    if (myGameArea.key && myGameArea.key == 39 && myGamePiece.x < myBackground.width + 65 - myGamePiece.width) {
         myGamePiece.speedX  = 2;
     }
     myGamePiece.newPos();
@@ -129,7 +129,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         var newFruit = fruitTemplates[getRandomInt(0,5)].clone();
-        newFruit.x = getRandomInt(0, myBackground.width - newFruit.width);
+        newFruit.x = getRandomInt(65, myBackground.width - newFruit.width);
         console.log('Generated new fruit', newFruit);
         myFruits.push(newFruit);
     }
