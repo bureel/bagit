@@ -136,6 +136,7 @@ function updateGameArea() {
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         var newFruit = fruitTemplates[getRandomInt(0,5)].clone();
         newFruit.x = getRandomInt(65, myBackground.width - newFruit.width);
+        newFruit.y = myTop.height;
         console.log('Generated new fruit', newFruit);
         myFruits.push(newFruit);
     }
@@ -149,7 +150,7 @@ function updateGameArea() {
         }if (myFruits[i].y > myBackground.height - myBottom.height) {
             console.log('Destroyed fruit', myFruits.splice(i, 1));
         } else {
-            myFruits[i].y += 2;
+            myFruits[i].y += myBackground.speedY;
             myFruits[i].update();
         }
     }
