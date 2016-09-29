@@ -144,7 +144,9 @@ function updateGameArea() {
             dollar = dollar - 1;
             console.log('Removing a dollar', dollar);
             console.log('Destroyed fruit', myFruits.splice(i, 1));
-        } if (myFruits[i].y > myBackground.height - myBottom.height) {
+        }if (dollar == 0) {
+            myGameArea.stop();
+        }if (myFruits[i].y > myBackground.height - myBottom.height) {
             console.log('Destroyed fruit', myFruits.splice(i, 1));
         } else {
             myFruits[i].y += 2;
