@@ -1,6 +1,8 @@
 var myGamePiece;
 var myBackground;
 var myMoney;
+var myBottom;
+var myTop;
 var myBanana = new component(85, 85, "peanut-butter-jelly-time.gif", 40, 40, "image");
 var myApple = new component(30, 30, "appleGamePiece.png", 40, 40, "image");
 var myGrapes = new component(30, 30, "GrapesGamePiece.png", 40, 40, "image");
@@ -15,6 +17,7 @@ function startGame() {
     myGamePiece = new component(50, 50, "GROCERY_BAG.png", 165, 580, "image");
     myBackground = new component(250, 676, "beltCloseUp.jpg", 65, 0, "background");
     myMoney = new component("40px", "Arial", "black", 220, 50, "text");
+    myBottom = new component(431, 96, "bottom.png", 0, 580, "image");
     myGameArea.start();
 }
 var myGameArea = {
@@ -114,6 +117,7 @@ function updateGameArea() {
     myBackground.speedY = 2;
     myBackground.newPos();
     myBackground.update();
+    myBottom.update();
     myGamePiece.speedX = 0;
     myMoney.text="MONEY:$ " + dollar;
     myMoney.update();
@@ -138,7 +142,7 @@ function updateGameArea() {
             dollar = dollar - 1;
             console.log('Removing a dollar', dollar);
             console.log('Destroyed fruit', myFruits.splice(i, 1));
-        } if (myFruits[i].y > myBackground.height) {
+        } if (myFruits[i].y > myBackground.height - myBottom.height) {
             console.log('Destroyed fruit', myFruits.splice(i, 1));
         } else {
             myFruits[i].y += 2;
