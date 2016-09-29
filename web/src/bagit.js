@@ -16,8 +16,9 @@ var myFruits = [];
 function startGame() {
     myGamePiece = new component(50, 50, "GROCERY_BAG.png", 165, 580, "image");
     myBackground = new component(250, 676, "beltCloseUp.jpg", 65, 0, "background");
-    myMoney = new component("40px", "Arial", "black", 220, 50, "text");
+    myMoney = new component("40px", "Arial", "black", 580, 250, "text");
     myBottom = new component(431, 96, "bottom.png", 0, 580, "image");
+    myTop = new component(350, 49, "top.png", 0, 0, "image");
     myGameArea.start();
 }
 var myGameArea = {
@@ -117,6 +118,7 @@ function updateGameArea() {
     myBackground.speedY = 2;
     myBackground.newPos();
     myBackground.update();
+    myTop.update();
     myBottom.update();
     myGamePiece.speedX = 0;
     myMoney.text="MONEY:$ " + dollar;
