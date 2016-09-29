@@ -12,7 +12,7 @@ var dollar = 10;
 var myFruits = [];
 
 function startGame() {
-    myGamePiece = new component(50, 50, "GROCERY_BAG.png", 75, 430, "image");
+    myGamePiece = new component(50, 50, "GROCERY_BAG.png", 165, 580, "image");
     myBackground = new component(250, 676, "beltCloseUp.jpg", 65, 0, "background");
     myMoney = new component("40px", "Arial", "black", 220, 50, "text");
     myGameArea.start();
