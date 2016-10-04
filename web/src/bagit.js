@@ -4,23 +4,15 @@ var myMoney;
 var myBottom;
 var myTop;
 var myBanana = new component(85, 85, "peanut-butter-jelly-time.gif", 40, 40, "image");
-var myApple = new component(30, 30, "appleGamePiece.png", 40, 40, "image");
-var myGrapes = new component(30, 30, "GrapesGamePiece.png", 40, 40, "image");
-var myOrange = new component(30, 30, "orangeGamePiece.png", 40, 40, "image");
-var myPear = new component(30, 30, "PearGamePiece.png", 40, 40, "image");
-var myWatermelon = new component(30, 30, "watermelonGamePiece.png", 40, 40, "image");
+var myApple = new component(60, 60, "appleGamePiece.png", 40, 40, "image");
+var myGrapes = new component(60, 60, "GrapesGamePiece.png", 40, 40, "image");
+var myOrange = new component(60, 60, "orangeGamePiece.png", 40, 40, "image");
+var myPear = new component(60, 60, "PearGamePiece.png", 40, 40, "image");
+var myWatermelon = new component(60, 60, "watermelonGamePiece.png", 40, 40, "image");
 var fruitTemplates = [myBanana, myApple, myGrapes, myOrange, myPear, myWatermelon];
 var dollar = 10;
 var myFruits = [];
 
-function startGame() {
-    myGamePiece = new component(50, 50, "bob.png", 165, 580, "image");
-    myBackground = new component(250, 676, "beltCloseUp.jpg", 65, 0, "background");
-    myMoney = new component("40px", "Arial", "black", 580, 250, "text");
-    myBottom = new component(431, 96, "bottom.png", 0, 580, "image");
-    myTop = new component(350, 49, "top.png", 0, 0, "image");
-    myGameArea.start();
-}
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
@@ -44,6 +36,21 @@ var myGameArea = {
         clearInterval(this.interval);
     }
 };
+
+function startGame() {
+    myGamePiece = new component(50, 50, "bob.png", 165, 580, "image");
+    myBackground = new component(250, 676, "beltCloseUp.jpg", 65, 0, "background");
+    myMoney = new component("40px", "Arial", "black", 580, 250, "text");
+    myBottom = new component(431, 96, "bottom.png", 0, 580, "image");
+    myTop = new component(350, 49, "top.png", 0, 0, "image");
+    myGameArea.start();
+}
+
+function restartGame() {
+    myGameArea.stop();
+    dollar = 10;
+    startGame();
+}
 
 function component(width, height, color, x, y, type) {
     this.type = type;
@@ -135,7 +142,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         var newFruit = fruitTemplates[getRandomInt(0,5)].clone();
-        newFruit.x = getRandomInt(65, myBackground.width - newFruit.width);
+        newFruit.x = getRandomInt(65, myBackground.width + 65 - newFruit.width);
         newFruit.y = myTop.height;
         console.log('Generated new fruit', newFruit);
         myFruits.push(newFruit);
@@ -146,6 +153,7 @@ function updateGameArea() {
             console.log('Removing a dollar', dollar);
             console.log('Destroyed fruit', myFruits.splice(i, 1));
         }if (dollar == 0) {
+            console.log('Destroyed fruit', myFruits.splice(i, 1));
             myGameArea.stop();
         }if (myFruits[i].y > myBackground.height - myBottom.height) {
             console.log('Destroyed fruit', myFruits.splice(i, 1));
