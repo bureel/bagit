@@ -3,15 +3,15 @@ var myBackground;
 var myMoney;
 var myBottom;
 var myTop;
-var myBanana = new component(85, 85, "peanut-butter-jelly-time.gif", 40, 40, "image");
-var myApple = new component(60, 60, "appleGamePiece.png", 40, 40, "image");
-var myGrapes = new component(60, 60, "GrapesGamePiece.png", 40, 40, "image");
-var myOrange = new component(60, 60, "orangeGamePiece.png", 40, 40, "image");
-var myPear = new component(60, 60, "PearGamePiece.png", 40, 40, "image");
-var myWatermelon = new component(60, 60, "watermelonGamePiece.png", 40, 40, "image");
-var fruitTemplates = [myBanana, myApple, myGrapes, myOrange, myPear, myWatermelon];
-var dollar = 10;
-var myFruits = [];
+var myBanana;
+var myApple;
+var myGrapes;
+var myOrange;
+var myPear;
+var myWatermelon;
+var fruitTemplates;
+var dollar;
+var myFruits;
 
 var myGameArea = {
     canvas : document.createElement("canvas"),
@@ -33,22 +33,31 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     stop : function() {
+        updateGameArea();
         clearInterval(this.interval);
     }
 };
 
 function startGame() {
+    dollar = 10;
     myGamePiece = new component(50, 50, "bob.png", 165, 580, "image");
     myBackground = new component(250, 676, "beltCloseUp.jpg", 65, 0, "background");
     myMoney = new component("40px", "Arial", "black", 580, 250, "text");
     myBottom = new component(431, 96, "bottom.png", 0, 580, "image");
     myTop = new component(350, 49, "top.png", 0, 0, "image");
+    myBanana = new component(85, 85, "peanut-butter-jelly-time.gif", 40, 40, "image");
+    myApple = new component(60, 60, "appleGamePiece.png", 40, 40, "image");
+    myGrapes = new component(60, 60, "GrapesGamePiece.png", 40, 40, "image");
+    myOrange = new component(60, 60, "orangeGamePiece.png", 40, 40, "image");
+    myPear = new component(60, 60, "PearGamePiece.png", 40, 40, "image");
+    myWatermelon = new component(60, 60, "watermelonGamePiece.png", 40, 40, "image");
+    fruitTemplates = [myBanana, myApple, myGrapes, myOrange, myPear, myWatermelon];
+    myFruits = [];
     myGameArea.start();
 }
 
 function restartGame() {
     myGameArea.stop();
-    dollar = 10;
     startGame();
 }
 
